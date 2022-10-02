@@ -29,7 +29,8 @@ export function updateResponseStatus(
           // logger.info({ message: 'Response Updated Successfully' });
         })
         .catch((error) =>
-          logger.error({ message: "Unable to update response", error })
+          // logger.error({ message: "Unable to update response", error })
+          console.log({error})
         );
       sendData.apply(response, arguments);
     };

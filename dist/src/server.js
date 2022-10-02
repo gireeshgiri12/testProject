@@ -22,6 +22,6 @@ appInstance
     });
 })
     .catch((error) => {
-    logger_config_1.logger.error(error);
+    console.log({ error });
 });
 //# sourceMappingURL=server.js.map

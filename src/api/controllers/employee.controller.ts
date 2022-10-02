@@ -12,7 +12,6 @@ export class EmployeeController {
         response.json(employeeResponse);
     } catch (err) {
       console.log({ err });
-      logger.error(err.message);
       response.status(400).json(err);
     }
   }

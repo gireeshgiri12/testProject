@@ -38,7 +38,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.securityCheck = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
 const exception_handler_1 = require("exception-handler");
-const logger_config_1 = require("./../config/logger.config");
 const all_constants_response_json_1 = require("./../responses/all-constants.response.json");
 async function securityCheck(request, _response, next) {
     const l = request.headers["content-language"];
@@ -51,7 +50,6 @@ async function securityCheck(request, _response, next) {
             next();
         }
         catch (error) {
-            logger_config_1.logger.error({ error });
             if (error.name === "TokenExpiredError") {
                 return next((0, exception_handler_1.unauthorizedError)(l, all_constants_response_json_1.requestHeader[l].tokenExpired));
             }

@@ -23,5 +23,5 @@ appInstance
     });
   })
   .catch((error) => {
-    logger.error(error);
+    console.log({error})
   });

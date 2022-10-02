@@ -31,7 +31,6 @@ export async function securityCheck(
       jwt.verify(token, secret);
       next();
     } catch (error) {
-      logger.error({ error });
       if (error.name === "TokenExpiredError") {
         return next(unauthorizedError(l, requestHeader[l].tokenExpired));
       }

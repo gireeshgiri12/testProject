@@ -24,7 +24,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmployeeDetailsController = void 0;
-const logger_config_1 = require("../../config/logger.config");
 const exception_handler_1 = require("exception-handler");
 const employeeDetails_model_1 = require("../../models/employeeDetails.model");
 const ExcelJs = __importStar(require("exceljs"));
@@ -38,7 +37,6 @@ class EmployeeDetailsController {
         }
         catch (err) {
             console.log({ err });
-            logger_config_1.logger.error(err.message);
             response.status(400).json(err);
         }
     }
@@ -66,7 +64,6 @@ class EmployeeDetailsController {
         }
         catch (err) {
             console.log({ err });
-            logger_config_1.logger.error(err.message);
             response.status(400).json(err);
         }
     }

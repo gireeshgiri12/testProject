@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateRequestIdResponse = exports.updateResponseStatus = exports.RequestStatus = void 0;
 const database_config_1 = require("./../config/database.config");
-const logger_config_1 = require("./../config/logger.config");
 var RequestStatus;
 (function (RequestStatus) {
     RequestStatus["processing"] = "PROCESSING";
@@ -20,7 +19,9 @@ function updateResponseStatus(_request, response, next) {
                 .then((_) => {
                 // logger.info({ message: 'Response Updated Successfully' });
             })
-                .catch((error) => logger_config_1.logger.error({ message: "Unable to update response", error }));
+                .catch((error) => 
+            // logger.error({ message: "Unable to update response", error })
+            console.log({ error }));
             sendData.apply(response, arguments);
         };
     }

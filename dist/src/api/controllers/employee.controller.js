@@ -14,7 +14,6 @@ class EmployeeController {
         }
         catch (err) {
             console.log({ err });
-            logger_config_1.logger.error(err.message);
             response.status(400).json(err);
         }
     }
