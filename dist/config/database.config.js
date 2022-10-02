@@ -22,8 +22,29 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.db = void 0;
+/*
+ * File: database.ts
+ * Project:
+ * descriptions: ....
+ * File Created: Thursday, 30th January 2020 4:58:32 pm
+ * Author: Kunal Adhikari (kunal.adhikari@altorumleren.com)
+ * -----
+ * Last Modified: Thursday, 7th May 2020 9:43:32 am
+ * Modified By: Mohammad Asif sk<mohammad.asif@altorumleren.com>
+ * -----
+ * Copyright 2019 - 2020 altorum leren, Altorum leren pvt ltd
+ */
+const ioredis_1 = __importDefault(require("ioredis"));
 const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: '.env' });
-// export const logger = getLogger(hostname(), name, version, 'debug');
-//# sourceMappingURL=logger.config.js.map
+exports.db = new ioredis_1.default({
+    host: process.env.REDIS_HOST,
+    db: parseInt(process.env.REDIS_DB),
+    port: parseInt(process.env.REDIS_PORT)
+});
+//# sourceMappingURL=database.config.js.map
