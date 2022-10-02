@@ -18,7 +18,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.3",
     "morgan": "^1.10.0",
-    "node-aop": "^1.1.5",
     "razorpay": "^2.8.1",
     "xlsx": "^0.18.5"
   },
