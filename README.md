@@ -3,7 +3,7 @@ WORKDIR /usr/src/app
 RUN apk add --no-cache --update nodejs nodejs-npm 
 COPY package.json  ./
 ARG CACHEBUST=1
-RUN npm i exception-handler@0.0.8 node-aop@^1.1.5 typescript@^3.9.7 depd@2.0.0  @types/paypal-rest-sdk@^1.7.6 --registry https://nexus.altorumleren.com/repository/npm-node/
+RUN npm i exception-handler@0.0.8 node-aop@^1.1.5 typescript@^3.9.7 depd@2.0.0  @types/paypal-rest-sdk@^1.7.6 --registry https://repository/npm-node/
 RUN npm i  mongoose@^6.1.3  razorpay@^2.8.1 --registry https://registry.npmjs.org
 ARG CACHEBUST=1
 RUN npm get registry
