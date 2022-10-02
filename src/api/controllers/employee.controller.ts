@@ -1,6 +1,6 @@
-import { logger } from '../../config/logger.config';
+// import { logger } from '../../config/logger.config';
 import { NextFunction, Request, Response } from 'express';
-import { badRequest, notFoundError, serverError } from 'exception-handler';
+// import { badRequest, notFoundError, serverError } from 'exception-handler';
 import {Employee, IEmployee,  } from '../../models/employee.model';
 
 export class EmployeeController {
@@ -26,7 +26,7 @@ export class EmployeeController {
         response.status(404).json({message:"Details NotFound"});
       }
     } catch (err) {
-      const { code, error, message } = JSON.parse(err.message ?? JSON.stringify(serverError()));
+      const { code, error, message } = JSON.parse(err.message);
       next({ code, error, message });
     }
   }
@@ -38,7 +38,7 @@ export class EmployeeController {
         response.json(emp);
     } catch (err) {
       console.log({ err });
-      logger.error(err.message);
+      // logger.error(err.message);
       response.status(400).json(err);
     }
   }
@@ -53,7 +53,7 @@ export class EmployeeController {
       response.status(400).json({message:"deletion UnSuccessful"});
       }
     } catch (err) {
-      const { code, error, message } = JSON.parse(err.message ?? JSON.stringify(serverError()));
+      const { code, error, message } = JSON.parse(err.message);
       next({ code, error, message });
     }
   }

@@ -13,8 +13,8 @@
 
 import { Request, Response, NextFunction } from 'express';
 import { db } from './../config/database.config';
-import { logger } from './../config/logger.config';
-import { serverError } from 'exception-handler';
+// import { logger } from './../config/logger.config';
+// import { serverError } from 'exception-handler';
 import { requestHeader } from './../responses/all-constants.response.json';
 
 export enum RequestStatus {
@@ -82,5 +82,5 @@ export function verifyRequestHeader(request: Request, _response: Response, next:
   if (requestId) {
     return next();
   }
-  next(serverError(l, requestHeader[l].without_header));
+  // next(serverError(l, requestHeader[l].without_header));
 }

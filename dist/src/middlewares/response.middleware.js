@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateRequestIdResponse = exports.updateResponseStatus = exports.RequestStatus = void 0;
 const database_config_1 = require("./../config/database.config");
+// import { logger } from "./../config/logger.config";
 var RequestStatus;
 (function (RequestStatus) {
     RequestStatus["processing"] = "PROCESSING";

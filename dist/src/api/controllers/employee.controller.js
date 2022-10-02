@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmployeeController = void 0;
-const logger_config_1 = require("../../config/logger.config");
-const exception_handler_1 = require("exception-handler");
+// import { badRequest, notFoundError, serverError } from 'exception-handler';
 const employee_model_1 = require("../../models/employee.model");
 class EmployeeController {
     static async createEmployee(req, response, next) {
@@ -18,7 +17,6 @@ class EmployeeController {
         }
     }
     static async getEmployee(req, response, next) {
-        var _a;
         try {
             const employee = await employee_model_1.Employee.findOne({ _id: req.params.Id }).exec();
             if (employee) {
@@ -29,7 +27,7 @@ class EmployeeController {
             }
         }
         catch (err) {
-            const { code, error, message } = JSON.parse((_a = err.message) !== null && _a !== void 0 ? _a : JSON.stringify((0, exception_handler_1.serverError)()));
+            const { code, error, message } = JSON.parse(err.message);
             next({ code, error, message });
         }
     }
@@ -41,12 +39,11 @@ class EmployeeController {
         }
         catch (err) {
             console.log({ err });
-            logger_config_1.logger.error(err.message);
+            // logger.error(err.message);
             response.status(400).json(err);
         }
     }
     static async deleteEmployee(req, response, next) {
-        var _a;
         try {
             const employee = await employee_model_1.Employee.findByIdAndDelete(req.params.Id).lean().exec();
             if (employee) {
@@ -57,7 +54,7 @@ class EmployeeController {
             }
         }
         catch (err) {
-            const { code, error, message } = JSON.parse((_a = err.message) !== null && _a !== void 0 ? _a : JSON.stringify((0, exception_handler_1.serverError)()));
+            const { code, error, message } = JSON.parse(err.message);
             next({ code, error, message });
         }
     }

@@ -1,1 +1,1 @@
-{"version":3,"file":"axios.config.js","sourceRoot":"","sources":["../../../src/config/axios.config.ts"],"names":[],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA,kDAA0B;AAC1B,iDAAmC;AACnC,MAAM,aAAa,GAAG,eAAK,CAAC,MAAM,EAAE,CAAC;AACrC,GAAG,CAAC,MAAM,CAAC,aAAa,CAAC,CAAC;AAC1B,kBAAe,aAAa,CAAC"}
+{"version":3,"file":"axios.config.js","sourceRoot":"","sources":["../../../src/config/axios.config.ts"],"names":[],"mappings":"AAAA,6BAA6B;AAC7B,sCAAsC;AACtC,wCAAwC;AACxC,6BAA6B;AAC7B,gCAAgC"}

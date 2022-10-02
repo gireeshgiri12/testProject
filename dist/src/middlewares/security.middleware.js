@@ -37,8 +37,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.securityCheck = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
-const exception_handler_1 = require("exception-handler");
-const all_constants_response_json_1 = require("./../responses/all-constants.response.json");
 async function securityCheck(request, _response, next) {
     const l = request.headers["content-language"];
     const header = request.headers.authorization; // Express headers are auto converted to lowercase
@@ -51,13 +49,15 @@ async function securityCheck(request, _response, next) {
         }
         catch (error) {
             if (error.name === "TokenExpiredError") {
-                return next((0, exception_handler_1.unauthorizedError)(l, all_constants_response_json_1.requestHeader[l].tokenExpired));
+                // return next(unauthorizedError(l, requestHeader[l].tokenExpired));
+                return "token Expired";
             }
-            return next((0, exception_handler_1.unauthorizedError)(l));
+            return error;
         }
     }
     else {
-        return next((0, exception_handler_1.unauthorizedError)(l, all_constants_response_json_1.requestHeader[l].tokenMissing));
+        // return next(unauthorizedError(l, requestHeader[l].tokenMissing));
+        return "Token Missing";
     }
 }
 exports.securityCheck = securityCheck;

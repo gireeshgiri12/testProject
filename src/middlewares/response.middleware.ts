@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { db } from "./../config/database.config";
-import { logger } from "./../config/logger.config";
+// import { logger } from "./../config/logger.config";
 
 export enum RequestStatus {
   processing = "PROCESSING",

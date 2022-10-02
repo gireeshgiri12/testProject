@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmployeeDetailsController = void 0;
-const exception_handler_1 = require("exception-handler");
+// import { badRequest, notFoundError, serverError } from 'exception-handler';
 const employeeDetails_model_1 = require("../../models/employeeDetails.model");
 const ExcelJs = __importStar(require("exceljs"));
 class EmployeeDetailsController {
@@ -41,7 +41,6 @@ class EmployeeDetailsController {
         }
     }
     static async getEmployeeDetails(req, response, next) {
-        var _a;
         try {
             const employee = await employeeDetails_model_1.EmployeeDetails.findOne({ _id: req.params.Id }).exec();
             if (employee) {
@@ -52,7 +51,7 @@ class EmployeeDetailsController {
             }
         }
         catch (err) {
-            const { code, error, message } = JSON.parse((_a = err.message) !== null && _a !== void 0 ? _a : JSON.stringify((0, exception_handler_1.serverError)()));
+            const { code, error, message } = JSON.parse(err.message);
             next({ code, error, message });
         }
     }
@@ -68,7 +67,6 @@ class EmployeeDetailsController {
         }
     }
     static async deleteEmployeeDetails(req, response, next) {
-        var _a;
         try {
             const employee = await employeeDetails_model_1.EmployeeDetails.findByIdAndDelete(req.params.Id).lean().exec();
             if (employee) {
@@ -79,7 +77,7 @@ class EmployeeDetailsController {
             }
         }
         catch (err) {
-            const { code, error, message } = JSON.parse((_a = err.message) !== null && _a !== void 0 ? _a : JSON.stringify((0, exception_handler_1.serverError)()));
+            const { code, error, message } = JSON.parse(err.message);
             next({ code, error, message });
         }
     }

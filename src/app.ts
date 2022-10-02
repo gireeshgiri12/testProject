@@ -17,8 +17,8 @@ import { connect } from 'mongoose';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import { json, urlencoded } from 'body-parser';
-import { logger } from './config/logger.config';
-import { LoggerStream, requestLogger } from 'node-aop';
+// import { logger } from './config/logger.config';
+// import { LoggerStream, requestLogger } from 'node-aop';
 import { languageCheckUp } from './middlewares/language.middleware';
 import { GeneralController } from './api/controllers/health.controller';
 import { verifyRequestHeader } from './middlewares/request.middleware';
@@ -31,7 +31,7 @@ export class App {
   constructor() {
     this.app = express();
     this.configureServer();
-    logger.info('creating app instance');
+    // logger.info('creating app instance');
     this.app.route('/payment/api/v1/health').get(GeneralController.getHealthInfo);
     this.app.use('/emp/api/v1/', EmployeeRoutes.register());
     this.app.use('/emp/api/v1/', EmployeeDetailsRoutes.register());
@@ -44,7 +44,7 @@ export class App {
       morgan(
         'Input Request:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" req-Id: :req[x-requested-with] :status :res[content-length] ":referrer" ":user-agent"',
         {
-          stream: new LoggerStream(requestLogger),
+          // stream: new LoggerStream("error"),
           skip: (req: express.Request, _res: express.Response) => {
             return req.url.includes('metrics');
           }
@@ -56,9 +56,10 @@ export class App {
   async databaseConnection() {
     try {
       await connect(process.env.MONGODB_URI, {});
-      logger.debug('Database connection successful');
+      // logger.debug('Database connection successful');
+      console.log("Database connection successful")
     } catch (error) {
-      logger.error(error.message);
+      // logger.error(error.message);
       process.exit();
     }
   }

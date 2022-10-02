@@ -23,11 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logger = void 0;
-const package_json_1 = require("./../../package.json");
-const node_aop_1 = require("node-aop");
-const os_1 = require("os");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: '.env' });
-exports.logger = (0, node_aop_1.getLogger)((0, os_1.hostname)(), package_json_1.name, package_json_1.version, 'debug');
+// export const logger = getLogger(hostname(), name, version, 'debug');
 //# sourceMappingURL=logger.config.js.map

@@ -13,8 +13,8 @@
 
 import { Response, Request, NextFunction } from "express";
 import * as jwt from "jsonwebtoken";
-import { unauthorizedError, badRequest } from "exception-handler";
-import { logger } from "./../config/logger.config";
+// import { unauthorizedError, badRequest } from "exception-handler";
+// import { logger } from "./../config/logger.config";
 import { requestHeader } from "./../responses/all-constants.response.json";
 
 export async function securityCheck(
@@ -32,11 +32,13 @@ export async function securityCheck(
       next();
     } catch (error) {
       if (error.name === "TokenExpiredError") {
-        return next(unauthorizedError(l, requestHeader[l].tokenExpired));
+        // return next(unauthorizedError(l, requestHeader[l].tokenExpired));
+        return "token Expired"
       }
-      return next(unauthorizedError(l));
+      return error
     }
   } else {
-    return next(unauthorizedError(l, requestHeader[l].tokenMissing));
+    // return next(unauthorizedError(l, requestHeader[l].tokenMissing));
+    return "Token Missing"
   }
 }

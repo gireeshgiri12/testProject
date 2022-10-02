@@ -22,8 +22,8 @@ const mongoose_1 = require("mongoose");
 const compression_1 = __importDefault(require("compression"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const body_parser_1 = require("body-parser");
-const logger_config_1 = require("./config/logger.config");
-const node_aop_1 = require("node-aop");
+// import { logger } from './config/logger.config';
+// import { LoggerStream, requestLogger } from 'node-aop';
 const language_middleware_1 = require("./middlewares/language.middleware");
 const health_controller_1 = require("./api/controllers/health.controller");
 const request_middleware_1 = require("./middlewares/request.middleware");
@@ -33,7 +33,7 @@ class App {
     constructor() {
         this.app = (0, express_1.default)();
         this.configureServer();
-        logger_config_1.logger.info('creating app instance');
+        // logger.info('creating app instance');
         this.app.route('/payment/api/v1/health').get(health_controller_1.GeneralController.getHealthInfo);
         this.app.use('/emp/api/v1/', employee_routes_1.EmployeeRoutes.register());
         this.app.use('/emp/api/v1/', employeeDetails_routes_1.EmployeeDetailsRoutes.register());
@@ -42,7 +42,7 @@ class App {
     configureServer() {
         this.app.use((0, compression_1.default)(), (0, helmet_1.default)(), (0, cors_1.default)(), language_middleware_1.languageCheckUp, request_middleware_1.verifyRequestHeader, (0, body_parser_1.json)({ limit: '50mb' }), (0, body_parser_1.urlencoded)({ extended: false }), (0, cookie_parser_1.default)());
         this.app.use((0, morgan_1.default)('Input Request:remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" req-Id: :req[x-requested-with] :status :res[content-length] ":referrer" ":user-agent"', {
-            stream: new node_aop_1.LoggerStream(node_aop_1.requestLogger),
+            // stream: new LoggerStream("error"),
             skip: (req, _res) => {
                 return req.url.includes('metrics');
             }
@@ -51,10 +51,11 @@ class App {
     async databaseConnection() {
         try {
             await (0, mongoose_1.connect)(process.env.MONGODB_URI, {});
-            logger_config_1.logger.debug('Database connection successful');
+            // logger.debug('Database connection successful');
+            console.log("Database connection successful");
         }
         catch (error) {
-            logger_config_1.logger.error(error.message);
+            // logger.error(error.message);
             process.exit();
         }
     }

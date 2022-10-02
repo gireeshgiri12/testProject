@@ -1,6 +1,6 @@
-import { logger } from '../../config/logger.config';
+// import { logger } from '../../config/logger.config';
 import { NextFunction, Request, Response } from 'express';
-import { badRequest, notFoundError, serverError } from 'exception-handler';
+// import { badRequest, notFoundError, serverError } from 'exception-handler';
 import { EmployeeDetails,IEmployeeDetails} from '../../models/employeeDetails.model';
 import * as ExcelJs from "exceljs";
 
@@ -27,7 +27,7 @@ export class EmployeeDetailsController {
         response.status(404).json({message:"Details NotFound"});
       }
     } catch (err) {
-      const { code, error, message } = JSON.parse(err.message ?? JSON.stringify(serverError()));
+      const { code, error, message } = JSON.parse(err.message);
       next({ code, error, message });
     }
   }
@@ -53,7 +53,7 @@ export class EmployeeDetailsController {
       response.status(400).json({message:"deletion UnSuccessful"});
       }
     } catch (err) {
-      const { code, error, message } = JSON.parse(err.message ?? JSON.stringify(serverError()));
+      const { code, error, message } = JSON.parse(err.message);
       next({ code, error, message });
     }
   }

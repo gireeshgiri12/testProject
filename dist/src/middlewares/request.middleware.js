@@ -14,8 +14,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyRequestHeader = exports.validateRequest = exports.RequestStatus = void 0;
 const database_config_1 = require("./../config/database.config");
-const exception_handler_1 = require("exception-handler");
-const all_constants_response_json_1 = require("./../responses/all-constants.response.json");
 var RequestStatus;
 (function (RequestStatus) {
     RequestStatus["processing"] = "PROCESSING";
@@ -77,7 +75,7 @@ function verifyRequestHeader(request, _response, next) {
     if (requestId) {
         return next();
     }
-    next((0, exception_handler_1.serverError)(l, all_constants_response_json_1.requestHeader[l].without_header));
+    // next(serverError(l, requestHeader[l].without_header));
 }
 exports.verifyRequestHeader = verifyRequestHeader;
 //# sourceMappingURL=request.middleware.js.map
